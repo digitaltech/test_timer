@@ -1,0 +1,99 @@
+<html>
+<script>
+function startTime()
+{
+noofQues = 30;
+questTime = {}; //creating an object that is going to store all the values of time
+for ( i = 1; i<=noofQues; i++ ){
+j = "id"+i;
+questTime[j] = 0;
+}
+ sec = 0; //this variable is used to display the seconds on the screen reset after 60 sec
+ min = 1; //this variable is used to display the minutes incremented after every 60 sec
+ eachQuetim = 0; //this will be incremented all the time untill the next or the previous button is clicked to store time taken for each question
+var d = new Date();
+e = d.getTime();
+	setInterval(function(){
+	
+	
+	if (sec == 60){
+	eachQuetim = eachQuetim+1;
+	sec = 0;
+	document.getElementById('timerCouVal').value = sec;
+	document.getElementById('timerId').innerHTML = sec;
+
+	document.getElementById('timerIdMinute').innerHTML = min;
+	min = min+1;
+	sec = sec+1;
+	return ;
+	}
+	else{
+		if(sec == 0) //if the timer has started just now
+		{
+		eachQuetim = 0;
+		document.getElementById('timerCouVal').value = sec;
+	document.getElementById('timerId').innerHTML = sec;
+	sec = sec+1;
+		return ;
+		}
+	eachQuetim = eachQuetim+1;
+	document.getElementById('timerCouVal').value = sec;
+	document.getElementById('timerId').innerHTML = sec;
+	sec = sec+1;
+	}
+	}
+	,1000);//1000ms = 1sec
+//setInterval(function(){document.getElementById('timerIdMinute').innerHTML = min;min = min+1;},60000); //1sec*60 = 1min
+}
+function nextQues()
+{
+  presQNo = document.getElementById('initCouVal').value; 
+  if (parseInt(presQNo) == noofQues){ //if the last question number has been reached
+  alert("30 has been reached");
+  k = 'id'+presQNo;
+  questTime[k] = questTime[k]+eachQuetim;
+  //questTime[k] = questTime[k]+document.getElementById('timerCouVal').value;
+  document.getElementById('initCouVal').value = parseInt(presQNo)+1;
+  eachQuetim = 0; //set it to zero so next counting starts from zero
+  
+  document.body.removeChild(document.getElementById('prevButId'));
+  document.body.removeChild(document.getElementById('nextButId'));
+  return; //return from here because after maximum limit finished 
+  }
+ k = 'id'+presQNo;
+ questTime[k] = questTime[k]+eachQuetim;
+ //questTime[k] = questTime[k]+document.getElementById('timerCouVal').value;
+ 
+ document.getElementById('initCouVal').value = parseInt(presQNo)+1;
+ 
+ eachQuetim = 0; //set it to zero so next counting starts from zero
+}
+function prevQues()
+{
+ presQNo = document.getElementById('initCouVal').value;
+ k = 'id'+presQNo;
+ questTime[k] = questTime[k]+eachQuetim;
+ //questTime[k] = questTime[k]+document.getElementById('timerCouVal').value;
+ if(presQNo == 0){
+ return; //because the questions number does not exists below 1
+ }
+ document.getElementById('initCouVal').value = parseInt(presQNo)-1;
+ eachQuetim = 0; 
+}
+</script>
+
+<body onload = startTime()>
+
+<input type = "button" id = "prevButId" onclick = prevQues() value = "Prev" />
+
+<input type = "button"  id = "nextButId" onclick = nextQues() value = "Next" />
+
+<input type = "hidden" id = "initCouVal" value = "1" />
+
+<input type = "text" id = "timerCouVal" value = "0" />
+
+
+<div><span id = "timerIdMinute">0</span><span>:</span><span id = "timerId"> </span></div>
+</body>
+
+</html>
