@@ -2,6 +2,7 @@
 border: solid 1px green;
 background-color:lightblue;
 width: 150px;
+height: 30px;
 }
 body
 {
@@ -11,4 +12,16 @@ background-image:url("images/paper.jpg");
 .PrNeDiv{
 float: left;
 margin: 0px 0px 0px 512px;
+}
+
+.timerDiv{
+float: left;
+margin: 10px 0px 0px 650px;
+}
+.mainQuesDiv{
+float: left;
+margin: 10px 0px 0px 340px;
+background-color:rgb(255, 255, 255 );
+width: 50%;
+height: 60%;
 }
