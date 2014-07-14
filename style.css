@@ -1,0 +1,14 @@
+.butDesg1{
+border: solid 1px green;
+background-color:lightblue;
+width: 150px;
+}
+body
+{
+background-image:url("images/paper.jpg");
+}
+
+.PrNeDiv{
+float: left;
+margin: 0px 0px 0px 512px;
+}
